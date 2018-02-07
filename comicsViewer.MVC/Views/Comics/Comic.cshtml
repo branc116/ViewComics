@@ -1,0 +1,32 @@
+﻿@model ComicsViewer.Web.Models.Comics.Comic
+@{
+    ViewData["Title"] = Model.Name;
+}
+<div class="container-fluid">
+    <div class="row">
+        <h2 class="col-md-6 col-12">@Model.Name</h2>
+        <h2 class="col-md-6 col-12">@Model.Count issues</h2>
+    </div>
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <td>Name</td>
+                    <td>Full name</td>
+                    <td>Issue</td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var issue in Model.Issues.value)
+                {
+                    
+                    <tr>
+                        <td><a href="@Url.Action("Issue", "Comics")?i=@issue.Issue">@issue.Name</a></td>
+                        <td>@issue.NameAndIssue</td>
+                        <td>@issue.Issue</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

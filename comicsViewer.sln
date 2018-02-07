@@ -1,0 +1,44 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.27130.2010
+MinimumVisualStudioVersion = 15.0.26124.0
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComicsViewer.Web", "comicsViewer.MVC\ComicsViewer.Web.csproj", "{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ComicsViewer.Crawler", "ComicsViewer.Crawler", "{0A85410C-D788-46F7-A27A-DB03D624552D}"
+	ProjectSection(SolutionItems) = preProject
+		comicsViewer.crawler\comicsMin.json = comicsViewer.crawler\comicsMin.json
+		comicsViewer.crawler\crawl.ps1 = comicsViewer.crawler\crawl.ps1
+		comicsViewer.crawler\grouped.json = comicsViewer.crawler\grouped.json
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|Any CPU = Release|Any CPU
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Debug|x64.Build.0 = Debug|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Debug|x86.Build.0 = Debug|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Release|x64.ActiveCfg = Release|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Release|x64.Build.0 = Release|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Release|x86.ActiveCfg = Release|Any CPU
+		{47F1CCD9-D66B-4984-98AE-AA9D77B976C4}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {62664ACC-F19D-4C29-947E-E3CE35A16D63}
+	EndGlobalSection
+EndGlobal

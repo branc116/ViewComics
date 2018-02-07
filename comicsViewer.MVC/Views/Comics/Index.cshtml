@@ -1,0 +1,23 @@
+﻿@model ComicsViewer.Web.Models.Comics.Comics
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="container-fluid">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>Comic name</td>
+                <td>No. of issues</td>
+            </tr>
+        </thead>
+        <tbody> 
+            @foreach(var com in Model.AllComics)
+            {
+                <tr>
+                    <td><a href="@Url.Action("Comic", "Comics")/@com.Name">@com.Name</a></td>
+                    <td>@com.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
