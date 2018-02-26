@@ -1,0 +1,10 @@
+﻿@model ComicsViewer.Web.Models.Comics.AllIssues
+@{
+    ViewData["Title"] = "IssueTest";
+}
+
+
+@foreach(var link in Model.Links)
+{
+    <img style="margin: 1rem" src="@link" />
+}

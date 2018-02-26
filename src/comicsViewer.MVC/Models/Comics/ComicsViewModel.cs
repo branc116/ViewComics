@@ -31,6 +31,7 @@ namespace ComicsViewer.Web.Models.Comics
         public string Href { get; set; }
         public string NameAndIssue { get; set; }
         public string Name { get; set; }
+        public string[] Links { get; set; }
     }
 
 
