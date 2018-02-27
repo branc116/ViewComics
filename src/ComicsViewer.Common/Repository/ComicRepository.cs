@@ -7,7 +7,7 @@ using System.Linq;
 
 namespace ComicsViewer.Common.Repository
 {
-    public class ComicRepository
+    public class ComicRepository : IComicRepository
     {
         private readonly ComicDbContext _context;
         private static readonly Logger _logger = LogManager.GetCurrentClassLogger();
@@ -68,6 +68,11 @@ namespace ComicsViewer.Common.Repository
         public List<Issue> StartsWith(string issuePrefix)
         {
             return _context.Issues.Where(i => i.IssueNumber.StartsWith(issuePrefix)).ToList();
+        }
+
+        public List<Comic> GetAllComics()
+        {
+            return _context.Comics.ToList();
         }
     }
 }

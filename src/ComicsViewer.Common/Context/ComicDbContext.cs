@@ -6,10 +6,20 @@ namespace ComicsViewer.Common.Context
     public class ComicDbContext : DbContext
     {
         private readonly string _connetionString;
-
-        public ComicDbContext(string connectionString = @"Server=(localdb)\mssqllocaldb;Database=ComicsViewer;Trusted_Connection=True;MultipleActiveResultSets=true;")
+        public ComicDbContext()
         {
-            _connetionString = connectionString;
+            _connetionString = System.Environment.GetEnvironmentVariable("ConnectionString");
+        }
+        public ComicDbContext(string connectionString = null)
+        {
+            if (connectionString == null)
+            {
+                _connetionString = System.Environment.GetEnvironmentVariable("ConnectionString");
+            }
+            else
+            {
+                _connetionString = connectionString;
+            }
         }
 
         public DbSet<Comic> Comics { get; set; }

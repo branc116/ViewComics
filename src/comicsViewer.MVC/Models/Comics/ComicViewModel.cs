@@ -2,9 +2,9 @@
 
 namespace ComicsViewer.Web.Models.Comics
 {
-    public class IssueViewModel
+    public class ComicViewModel
     {
         public string Name { get; set; }
-        public List<string> Links { get; set; }
+        public List<IssueViewModel> AllIssues { get; set; }
     }
 }

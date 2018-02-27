@@ -1,4 +1,4 @@
-﻿@model ComicsViewer.Web.Models.Comics.Comics
+﻿@model ComicsViewer.Web.Models.Comics.ComicsViewModel
 @{
     ViewData["Title"] = "Index";
 }
@@ -7,7 +7,6 @@
         <thead>
             <tr>
                 <td>Comic name</td>
-                <td>No. of issues</td>
             </tr>
         </thead>
         <tbody>
@@ -15,7 +14,6 @@
             {
                 <tr>
                     <td><a href="@Url.Action("Comic", "Comics")/@com.Name">@com.Name</a></td>
-                    <td>@com.Count</td>
                 </tr>
             }
         </tbody>

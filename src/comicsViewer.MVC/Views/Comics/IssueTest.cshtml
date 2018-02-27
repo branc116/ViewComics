@@ -3,7 +3,7 @@
     ViewData["Title"] = "IssueTest";
 }
 
-<div id="my-carousel" class="carousel slide" data-ride="carousel">
+<div id="my-carousel" class="carousel slide" data-ride="false">
     <!-- Indicators -->
     <ol class="carousel-indicators">
         <li data-target="#my-carousel" data-slide-to="0" class="active"></li>
@@ -16,13 +16,13 @@
 
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
-        <div class="item active">
+        <div align ="center" class="item active">
             <img alt="0" src="@Model.Links[0]">
         </div>
 
          @for (int i = 1; i < Model.Links.Length; i++)
          {
-            <div class="item">
+            <div align ="center" class="item" width="1000">
                 <img alt="@i.ToString()" src="@Model.Links[i]">
             </div>
          }
