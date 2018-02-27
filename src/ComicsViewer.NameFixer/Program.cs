@@ -1,16 +1,16 @@
 ﻿using ComicsViewer.Common.Repository;
 using NLog;
-using System;
 using System.Linq;
 using static ComicsViewer.NameFixer.Helper.DataHelper;
 
 namespace ComicsViewer.NameFixer
 {
-    class Program
+    internal class Program
     {
         private readonly static ComicRepository _repository = GetRepository();
         private readonly static Logger _logger = LogManager.GetCurrentClassLogger();
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             var unfixedIssues = _repository.GetAllIssue("MasterComic");
             out1:;
@@ -26,7 +26,7 @@ namespace ComicsViewer.NameFixer
                     if (similar.Count > 1)
                     {
                         _logger.Debug($"Foud from issue name: {startName}, Comic name: {curName} for: ");
-                        foreach(var sim in similar.OrderBy(j => j.IssueNumber).ToList())
+                        foreach (var sim in similar.OrderBy(j => j.IssueNumber).ToList())
                         {
                             _logger.Debug($"    {sim.IssueNumber}");
                         }

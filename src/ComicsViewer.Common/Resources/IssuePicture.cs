@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace ComicsViewer.Common.Resources
+﻿namespace ComicsViewer.Common.Resources
 {
     public class IssuePicture
     {

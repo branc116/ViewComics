@@ -1,5 +1,3 @@
-using System;
-
 namespace ComicsViewer.Web.Models
 {
     public class ErrorViewModel

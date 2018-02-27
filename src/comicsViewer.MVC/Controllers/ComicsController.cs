@@ -1,7 +1,5 @@
 ﻿using ComicsViewer.Web.Models.Comics;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -28,16 +26,18 @@ namespace ComicsViewer.Web.Controllers
                 })
                 .ToArray()
         };
+
         public static readonly HttpClient httpClient = new HttpClient();
+
         public ComicsController()
         {
-            
-
         }
+
         public IActionResult Index()
         {
             return View(_comics);
         }
+
         [HttpGet("Comics/Comic/{comicName}")]
         public IActionResult Comic([FromRoute] string comicName)
         {
@@ -46,7 +46,8 @@ namespace ComicsViewer.Web.Controllers
                 return NotFound();
             return View(comic);
         }
-        [HttpGet("Comics/Issue/{comicName}")] 
+
+        [HttpGet("Comics/Issue/{comicName}")]
         [Produces("text/html")]
         public async Task<IActionResult> Issue([FromRoute] string comicName, [FromQuery] string i)
         {
@@ -61,6 +62,7 @@ namespace ComicsViewer.Web.Controllers
             };
             return View(model);
         }
+
         public IActionResult IssueTest([FromRoute] string comicName, [FromQuery] string i)
         {
             var allIsues = new AllIssues

@@ -2,9 +2,9 @@
 @{
     ViewData["Title"] = "IssueTest";
 }
-
-
-@foreach(var link in Model.Links)
+@foreach (var link in Model.Links)
 {
-    <img style="margin: 1rem" src="@link" />
+    <div style="margin: 1rem">
+        <img src="@link" />
+    </div>
 }

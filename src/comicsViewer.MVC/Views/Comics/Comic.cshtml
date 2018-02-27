@@ -19,7 +19,7 @@
             <tbody>
                 @foreach(var issue in Model.Issues.value)
                 {
-                    
+
                     <tr>
                         <td><a href="@Url.Action("Issue", "Comics")?i=@issue.Issue">@issue.Name</a></td>
                         <td>@issue.NameAndIssue</td>

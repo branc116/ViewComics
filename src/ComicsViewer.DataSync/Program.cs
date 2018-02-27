@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ComicsViewer.Common.Repository;
+﻿using ComicsViewer.Common.Repository;
 using ComicsViewer.Common.Resources;
 using HtmlAgilityPack;
-using Newtonsoft.Json;
 using NLog;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 using static ComicsViewer.DataSync.Helper.DataHelper;
+
 namespace ComicsViewer.DataSync
 {
     public class Program
@@ -15,11 +15,12 @@ namespace ComicsViewer.DataSync
         private readonly static ComicRepository _comicRepository = GetRepository();
         private readonly static HtmlWeb web = new HtmlWeb();
         private readonly static Comic masterComic = _comicRepository.GetComic("MasterComic");
-        static void Main(string[] args)
+
+        private static void Main(string[] args)
         {
             int skip = 0;
             int take = 2112;
-            if (args.Length > 0) 
+            if (args.Length > 0)
                 skip = int.TryParse(args[0], out int arg1) ? arg1 : skip;
             if (args.Length > 1)
                 take = int.TryParse(args[1], out int arg1) ? arg1 : take;
@@ -45,7 +46,7 @@ namespace ComicsViewer.DataSync
                         foreach (var item in nodes)
                         {
                             var name = item.InnerText.Split('…').First().Trim();
-                            if (!_comicRepository.Contains(name))
+                            if (!_comicRepository.Contains(name)) //todo fix when shity character are fixed
                             {
                                 var links = pictureLinks(item.Attributes["href"].Value);
                                 if (!links.Any())
@@ -78,9 +79,8 @@ namespace ComicsViewer.DataSync
             _logger.Trace("END");
         }
 
-        static List<string> pictureLinks(string uri)
+        private static List<string> pictureLinks(string uri)
         {
-            
             var doc = web.Load(uri);
             try
             {
@@ -90,19 +90,22 @@ namespace ComicsViewer.DataSync
                 {
                     returnLinks = doc.DocumentNode.SelectNodes("//div[@class='separator']").Descendants("a")
                         .Select(i => i.Attributes["href"].Value).ToList();
-                }else
+                }
+                else
                 {
                     var selector2 = doc.DocumentNode.SelectNodes("//img[@class='picture aligncenter']");
-                    if (selector2 != null) {
+                    if (selector2 != null)
+                    {
                         returnLinks = selector2.Select(i => i.Attributes["src"].Value).ToList();
-                    }else
+                    }
+                    else
                     {
                         _logger.Warn($"No links on uri: {uri}");
                     }
-
                 }
                 return returnLinks;
-            }catch(Exception ex)
+            }
+            catch (Exception ex)
             {
                 _logger.Error(ex);
                 throw;
