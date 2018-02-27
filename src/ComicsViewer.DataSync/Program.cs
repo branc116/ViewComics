@@ -46,7 +46,14 @@ namespace ComicsViewer.DataSync
                         foreach (var item in nodes)
                         {
                             var name = item.InnerText.Split('…').First().Trim();
-                            if (!_comicRepository.Contains(name)) //todo fix when shity character are fixed
+                            name = name.Replace("&#038;", "&");
+                            name = name.Replace("&#8211;", "–");
+                            name = name.Replace("&#8217;", "’");
+                            name = name.Replace("&#8216;", "‘");
+                            name = name.Replace("&#8230;", "");
+                            name = name.Replace("[email&#160;protected]", "");
+                            name = name.Replace("&#8242;", "′");
+                            if (!_comicRepository.Contains(name))
                             {
                                 var links = pictureLinks(item.Attributes["href"].Value);
                                 if (!links.Any())
