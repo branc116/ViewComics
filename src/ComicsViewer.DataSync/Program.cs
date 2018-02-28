@@ -92,23 +92,17 @@ namespace ComicsViewer.DataSync
             try
             {
                 List<string> returnLinks = new List<string>();
-                var firstSelector = doc.DocumentNode.SelectNodes("//div[@class='separator']");
-                if (firstSelector != null && firstSelector.Any())
+                List<HtmlNodeCollection> selector = new List<HtmlNodeCollection>();
+                selector.Add(doc.DocumentNode.SelectNodes("//img[@class='picture aligncenter']"));
+                selector.Add(doc.DocumentNode.SelectNodes("//img[@border='0']"));
+                selector.Add(doc.DocumentNode.SelectNodes("//img[@alt='']"));
+                if (selector.Any(i=> i != null))
                 {
-                    returnLinks = doc.DocumentNode.SelectNodes("//div[@class='separator']").Descendants("a")
-                        .Select(i => i.Attributes["href"].Value).ToList();
+                    returnLinks = selector.First(j=> j != null).Select(i => i.Attributes["src"].Value).ToList();
                 }
                 else
                 {
-                    var selector2 = doc.DocumentNode.SelectNodes("//img[@class='picture aligncenter']");
-                    if (selector2 != null)
-                    {
-                        returnLinks = selector2.Select(i => i.Attributes["src"].Value).ToList();
-                    }
-                    else
-                    {
-                        _logger.Warn($"No links on uri: {uri}");
-                    }
+                    _logger.Warn($"No links on uri: {uri}");
                 }
                 return returnLinks;
             }
