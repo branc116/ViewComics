@@ -51,6 +51,12 @@ namespace ComicsViewer.Common.Repository
                 ?.Issues
                 .ToList();
         }
+        public List<string> GetAllIssueNames(string comicName)
+        {
+            var comic = GetComic(comicName);
+            var id = comic.Id;
+            return _context.Issues.Where(i => i.Comic.Id == id).Select(i => i.IssueNumber).ToList();
+        }
 
         public Comic GetComic(string comicName)
         {

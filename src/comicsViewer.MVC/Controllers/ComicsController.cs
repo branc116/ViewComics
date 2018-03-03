@@ -33,12 +33,12 @@ namespace ComicsViewer.Web.Controllers
         [HttpGet("Comics/Comic/{comicName}")]
         public IActionResult Comic([FromRoute] string comicName)
         {
-            var issues = _comicRepository.GetAllIssue(comicName);
+            var issues = _comicRepository.GetAllIssueNames(comicName);
             var model = new ComicViewModel
             {
                 AllIssues = issues.Select(i => new IssueViewModel
                 {
-                    Name = i.IssueNumber
+                    Name = i
                 }
                 ).ToList(),
                 Name = comicName
