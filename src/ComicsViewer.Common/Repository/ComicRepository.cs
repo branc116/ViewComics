@@ -47,6 +47,7 @@ namespace ComicsViewer.Common.Repository
         {
             return _context.Comics
                 .Include(i => i.Issues)
+                .AsNoTracking()
                 .FirstOrDefault(i => i.Name == comicName)
                 ?.Issues
                 .ToList();
@@ -55,7 +56,11 @@ namespace ComicsViewer.Common.Repository
         {
             var comic = GetComic(comicName);
             var id = comic.Id;
-            return _context.Issues.Where(i => i.Comic.Id == id).Select(i => i.IssueNumber).ToList();
+            return _context.Issues
+                .Where(i => i.Comic.Id == id)
+                .Select(i => i.IssueNumber)
+                .AsNoTracking()
+                .ToList();
         }
 
         public Comic GetComic(string comicName)
