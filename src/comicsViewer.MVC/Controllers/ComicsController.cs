@@ -33,12 +33,13 @@ namespace ComicsViewer.Web.Controllers
         [HttpGet("Comics/Comic/{comicName}")]
         public IActionResult Comic([FromRoute] string comicName)
         {
-            var issues = _comicRepository.GetAllIssueNames(comicName);
+            var issues = _comicRepository.GetAllIssue(comicName);
             var model = new ComicViewModel
             {
                 AllIssues = issues.Select(i => new IssueViewModel
                 {
-                    Name = i
+                    Name = i.IssueNumber,
+                    Id = i.Id
                 }
                 ).ToList(),
                 Name = comicName
@@ -48,8 +49,15 @@ namespace ComicsViewer.Web.Controllers
 
         [HttpGet("Comics/Issue/{comicName}")]
         [Produces("text/html")]
-        public async Task<IActionResult> Issue([FromRoute] string comicName, [FromQuery] string i)
+        public async Task<IActionResult> Issue([FromRoute] string comicName, [FromQuery] int i)
         {
+             var data = _comicRepository.GetIssuePictures(i).OrderBy(j => j.Id);
+            var model = new IssueViewModel
+            {
+                Id = i,
+                Links = data.Select(j => j.Url).ToList(),
+                Name = comicName
+            };
             //var comic = _comics.AllComics.FirstOrDefault(j => j.Name == comicName)?.Issues?.value?.FirstOrDefault(j => j.Issue == i);
             //if (comic == null)
             //    return null;
@@ -59,7 +67,7 @@ namespace ComicsViewer.Web.Controllers
             //    Html = res,
             //    Href = comic.Href
             //};
-            //return View(model);
+            return View(model);
             throw new NotImplementedException();
         }
 

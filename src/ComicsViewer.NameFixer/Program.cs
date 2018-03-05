@@ -29,8 +29,19 @@ namespace ComicsViewer.NameFixer
             {
                 _logger.Trace($"{comic.comicName}{new string(' ', 100 - (comic.comicName?.Length ?? 0))}{comic.issues?.Count ?? -1}");
             }
+            
             _logger.Trace($"Depth finished, got {comics.Count} comic names! {unfixedIssues.Count} == {comics.Sum(i => i.issues.Count)}");
-
+            Update(comics);
+        }
+        public static void Update(List<(List<Issue> issues, string name)> comics)
+        {
+            foreach(var comic in comics)
+            {
+                foreach(var issue in comic.issues)
+                {
+                    _repository.MoveIssue(issue.Id, comic.name);
+                }
+            }
         }
 
         public static IEnumerable<(List<Issue> issues, string comicName)> GetComicNames(List<Issue> issues, string baseName, int maxDepth, string similarName = null)

@@ -1,5 +1,42 @@
 ﻿@model ComicsViewer.Web.Models.Comics.IssueViewModel
+@{
+    ViewData["Title"] = "IssueTest";
+}
 
-<div>
-    @Html.Raw(Model.Html);
+<div id="my-carousel" class="carousel slide" data-ride="false">
+    <!-- Indicators -->
+    <ol class="carousel-indicators">
+        <li data-target="#my-carousel" data-slide-to="0" class="active"></li>
+        @for (int i = 1; i < Model.Links.Count; i++)
+        {
+            <li data-target="#my-carousel" data-slide-to="@i.ToString()"></li>
+
+        }
+    </ol>
+
+    <!-- Wrapper for slides -->
+    <div class="carousel-inner" role="listbox">
+        <div align="center" class="item active">
+            <img alt="0" src="@Model.Links[0]">
+        </div>
+
+        @for (int i = 1; i < Model.Links.Count; i++)
+        {
+            <div align="center" class="item" width="1000">
+                <img alt="@i.ToString()" src="@Model.Links[i]">
+            </div>
+        }
+
+
+
+        <!-- Controls -->
+        <a class="left carousel-control" href="#my-carousel" role="button" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#my-carousel" role="button" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
 </div>

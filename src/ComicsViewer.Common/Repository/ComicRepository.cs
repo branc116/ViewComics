@@ -85,5 +85,33 @@ namespace ComicsViewer.Common.Repository
         {
             return _context.Comics.ToList();
         }
+
+        public Comic GetOrCreateComic(string comicName)
+        {
+            var newComic = _context.Comics.FirstOrDefault(i => comicName == i.Name);
+            if (newComic == null)
+            {
+                newComic = new Comic
+                {
+                    Name = comicName
+                };
+                _context.Comics.Add(newComic);
+                _context.SaveChanges();
+            }
+            
+            return newComic;
+        }
+        public void MoveIssue(int issueId, string comicName)
+        {
+            var comic = GetOrCreateComic(comicName);
+            var issue = _context.Issues.FirstOrDefault(i => i.Id == issueId);
+            issue.Comic = comic;
+            _context.SaveChanges();
+        }
+
+        public List<IssuePicture> GetIssuePictures(int issueId)
+        {
+            return _context.IssuePicture.Where(i => i.Issue.Id == issueId).ToList();
+        }
     }
 }
